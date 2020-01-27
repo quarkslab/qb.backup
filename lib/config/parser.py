@@ -7,7 +7,7 @@ import yaml
 class IncludeLoader(yaml.SafeLoader):
     """ Loader that allows `!include` constructor. Include a yaml file under the given
         key. Wildcards in the filename are allowed but the behavior is undefined in case
-        of recusive includes or in case of heterogeneous files.
+        of recursive includes or in case of heterogeneous files.
 
         WARNING: When loading a collection of mappings thanks to a wildcard, if two of more
         mappings share the same key the behavior for this key is undefined.
