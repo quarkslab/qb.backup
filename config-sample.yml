@@ -1,0 +1,41 @@
+---
+
+logging:
+  filename: /var/log/backup.log
+  mail:  # Mail configuration, deactivate mail sending if the key is absent
+    mailhost: [mailserver.example.com, 25]  # mandatory
+    fromaddr: backup@backup.example.com  # mandatory
+    toaddrs: [sysadmin@example.com]  # mandatory
+    # In subjects, $SUCCEEDED, $FAILED, $SKIPPED, $TOTAL, $RUNTIME and $STATUS
+    # are replaced with values.
+    subject_error: "Backup error log"
+    subject_status: "Backup status. Success $SUCCEEDED/$TOTAL"
+
+default:
+  port: 22
+  # WARNING: the content of those files will be lost
+  lock: /var/lock/backup/{}.lock
+
+hosts:
+  - hostname: foo.example.com
+    port: 22222
+    lock: /var/lock/foo.example.com.lock
+  - bar.example.com
+  - baz.example.com
+
+# Hosts can be imported from one or multiple YAML files instead:
+hosts: !include /etc/backup.d/hosts/*.yml
+# This syntax supports glob patterns in the included files path.
+# Included YAML files must contain a list of hosts, such as:
+#
+#   # included_hosts_file.yml:
+#   ---
+#   - hostname: foo.example.com
+#     port: 22222
+#     lock: /var/lock/foo.example.com.lock
+#   - bar.example.com
+#
+# If hosts are imported from multiple YAML files, each YAML file must adhere to
+# the format above, there must be no recursive includes, and hostnames must
+# be unique among all included files. The behavior is undefined if those
+# constraints are not respected.

@@ -1,0 +1,46 @@
+---
+
+version: 1
+
+loggers:
+  qb.backup:
+    level: DEBUG
+    propagate: false
+    handlers: [console, logs, mail_error]
+  qb.backup.progress:
+    level: INFO
+    propagate: true
+    handlers: [mail_status]
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    formatter: default
+    level: DEBUG
+    stream: ext://sys.stdout
+  logs:
+    class: logging.handlers.WatchedFileHandler
+    formatter: default
+    level: INFO
+    filename: ./backup.log
+  mail_error:
+    class: qb.backup.logging.BufferingSMTPHandler
+    formatter: default
+    level: WARNING
+    capacity: 16384
+    subject: "Backup error log"
+  mail_status:
+    class: qb.backup.logging.BufferingSMTPHandler
+    formatter: default
+    level: INFO
+    capacity: 16384
+    subject: "Backup status"
+
+formatters:
+  brief:
+    format: '%(message)s'
+  timestamped:
+    format: '%(created)10.4f| %(message)s'
+  default:
+    format: '%(asctime)s [%(levelname)-8s] %(name)-15s: %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
