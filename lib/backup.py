@@ -17,7 +17,7 @@ def bound(text, title=""):
 
 def handle_SubprocessError(e: subprocess.SubprocessError, hostname="<undefined>"):
     log_progress.error("%-20s: backup failed. More details in another email", hostname)
-    log.error("errorneous command: %r", e.cmd)
+    log.error("erroneous command: %r", e.cmd)
     log.error(bound(e.stderr, "stderr"))
     log.error(bound(e.stdout, "stdout"))
 
