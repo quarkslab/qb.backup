@@ -7,7 +7,7 @@ server, which comes with Python 3.7. Python 3.7 and above are supported, and
 Python 3.6 is supported as best effort.
 
 Backuped hosts must be configured according to the Ansible role
-[qb.backup](https://github.com/quarkslab/ansible-playbook-qb.backup).
+[qb.backup](https://github.com/quarkslab/ansible-role-qb.backup).
 
 This script and the FreeBSD Jail can be setup using the Ansible role
 [qb.backup_server](https://github.com/quarkslab/ansible-role-qb.backup_server).
