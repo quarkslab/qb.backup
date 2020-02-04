@@ -15,6 +15,9 @@ This script and the FreeBSD Jail can be setup using the Ansible role
 You can see an example playbook implementing those various roles here:
 [ansible-playbook-qb.backup](https://github.com/quarkslab/ansible-playbook-qb.backup).
 
+You can find [here](https://fosdem.org/2020/schedule/event/borg/) a video of our
+talk at FOSDEM'20 presenting how qb.backup works.
+
 ## Getting started
 
 Requirements:
